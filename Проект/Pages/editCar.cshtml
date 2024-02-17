@@ -1,0 +1,17 @@
+﻿@page
+@model editCarModel
+@{
+}
+
+<from method="post">
+	<p>ID: @Model?.Car?.Id</p>
+	<label for="Marka">Марка автомобиля</label>
+	<input asp-for="Car.Marka" type="text" id="Marka" name="Marka" /><span asp-validation-for="Car.Marka"></span></>
+	<h1></h1>
+	<label for="Model">Модель автомобиля</label>
+	<input asp-for="Car.Model" type="text" id="Model" name="Model" /><span asp-validation-for="Car.Model"></span></>
+	<h2></h2>
+	<label for="HP">Лошадиные силы</label>
+	<input asp-for="Car.Hp" type="text" id="Hp" name="Hp" /><span asp-validation-for="Car.Hp"></span></>
+	<button type="submit" class="btn btn-primary" >Сохранить</button>
+</from>
