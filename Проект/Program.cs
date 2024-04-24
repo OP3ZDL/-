@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
 using Проект.Reposytory;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,7 +9,18 @@ builder.Services.AddRazorPages();
 
 ConfigurationManager configuration = builder.Configuration;
 
-builder.Services.AddScoped<ICar, MocCar>();
+builder.Services.AddDbContextPool<AppDbContext>(options =>
+{
+    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+});
+builder.Services.AddScoped<ICar, SqlCar>();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = new PathString("/Account/Login");
+    });
+
 
 var app = builder.Build();
 
@@ -21,8 +34,20 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
+
 app.UseAuthorization();
 
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+});
+
 app.MapRazorPages();
+
+app.MapControllers();
 
 app.Run();

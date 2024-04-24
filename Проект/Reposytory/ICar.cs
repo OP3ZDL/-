@@ -6,13 +6,13 @@ namespace Проект.Reposytory
 	{
 		public Car Add(Car car);
 
-		public Car Update(Car car, int Id);
+		public Car Update(Car UpCar);
 
-		public List<Car> Delete(int car);
+		public Car Delete(int Id);
 
 		public Car Get(int Id);
 
 		public List<Car> GetAll();
-		Car UpdateCar(Car carForm);
+		
 	}
 }

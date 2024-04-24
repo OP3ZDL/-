@@ -18,5 +18,11 @@ namespace Проект.Pages
 			Cars = _carRepository.GetAll();
 			return Page();
 		}
+
+		public IActionResult OnPostDelete(int id)
+		{
+			_carRepository.Delete(id);
+			return RedirectToPage();
+		}
 	}
 }

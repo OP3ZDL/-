@@ -26,12 +26,11 @@ namespace Проект.Pages
         public IActionResult OnPost(Car CarForm)
         {
 
-            Car = _CarReposytory.UpdateCar(CarForm);
+            Car = _CarReposytory.Update(CarForm);
 
             if (Car == null) return NotFound();
 
             return RedirectToPage("Cars");
         }
-
     }
 }

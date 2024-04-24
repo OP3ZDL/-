@@ -29,6 +29,21 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Cars">Список автомобилей</a>
                         </li>
                     </ul>
+                    
+                    <div class="text-right ml-auto mr-3">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <form asp-controller="Account" asp-action="Logout" method="post" class="form-inline">
+                                <span class="navbar-text mr-3">Привет, @User.Identity.Name!</span>
+                                <button type="submit" class="btn btn-link text-dark">Выход</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <a asp-controller="Account" asp-action="Login" class="btn btn-link text-dark">Вход</a>
+                        }
+                    </div>
+                    
                 </div>
             </div>
         </nav>

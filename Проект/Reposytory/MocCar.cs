@@ -21,7 +21,7 @@ namespace Проект.Reposytory
 			
 		}
 
-		public Car UpdateCar(Car carForm)
+		public Car Update(Car carForm)
 		{
 			var carDB = Get(carForm.Id);
 			if (carDB != null)
@@ -38,10 +38,11 @@ namespace Проект.Reposytory
 			return car;
 		}
 
-		List<Car> ICar.Delete(int Id)
+		public Car Delete(int Id)
 		{
-			var carBD = _cars.Where(u => u.Id == Id).ToList().FirstOrDefault();
-			return _cars;
+			var Car = Get(Id);
+			_cars.Remove(Car);
+			return Car;
 		}
 
 		public Car Get(int Id)
@@ -54,7 +55,7 @@ namespace Проект.Reposytory
 			return _cars;
 		}
 
-		Car ICar.Update(Car car, int Id)
+		public Car Update(Car car, int Id)
 		{
 			var carDB = _cars.Where(u => u.Id == Id).ToList().FirstOrDefault();
 			if (carDB != null)

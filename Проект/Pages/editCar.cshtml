@@ -3,7 +3,7 @@
 @{
 }
 
-<from method="post">
+<form method="post">
 	<p>ID: @Model?.Car?.Id</p>
 	<label for="Marka">Марка автомобиля</label>
 	<input asp-for="Car.Marka" type="text" id="Marka" name="Marka" /><span asp-validation-for="Car.Marka"></span></>
@@ -14,4 +14,4 @@
 	<label for="HP">Лошадиные силы</label>
 	<input asp-for="Car.Hp" type="text" id="Hp" name="Hp" /><span asp-validation-for="Car.Hp"></span></>
 	<button type="submit" class="btn btn-primary" >Сохранить</button>
-</from>
+</form>
